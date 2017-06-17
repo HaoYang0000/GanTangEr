@@ -1,0 +1,58 @@
+        .alt{
+            color:#000000;
+            background-color:#EAF2D3;
+        }
+        .table-hover{
+            font-size:0.7em;
+            text-align:left; 
+            background-color:green;
+            color:#ffffff;
+        }
+        #myTable
+        {
+            font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+            width:100%;
+            border-collapse:collapse;
+        }
+        #myTable td, #myTable th 
+        {
+            font-size:0.7em;
+            border:1px solid #98bf21;
+            padding:3px 7px 2px 7px;
+        }
+        #myTable th 
+        {
+            font-size:0.7em;
+            text-align:left;
+            
+            background-color:#A7C942;
+            color:#ffffff;
+        }
+
+        #myTable td:hover
+        {
+            font-size:0.7em;
+            text-align:left;
+            cursor:pointer;
+            background-color:yellow;
+            color:black;
+        }
+
+        #eventResult tr:hover
+        {
+            text-align:left;
+            cursor:pointer;
+            background-color:yellow;
+            color:black;
+        }
+
+        #event {
+            width: 150px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+
+        /* When the input field gets focus, change its width to 100% */
+        #event:focus {
+            width: 400px;
+        }
