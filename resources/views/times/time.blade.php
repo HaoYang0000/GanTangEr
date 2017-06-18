@@ -3,6 +3,7 @@
     </div>
     <div id="hiddenDiv" class="collapse">
         <table id="myTable">
+            <tbody>
             <tr>
                 <th>日期</th>
                 @foreach($times as $time)
@@ -51,11 +52,11 @@
                     <td class="mybox">{{$time}}</td>
                 @endforeach
             </tr>
+            </tbody>
         </table>
     </div>
         <br>
         <div class="class="form-group"">
-
             <form action="/send" method="POST" id="dataForm">
                 {{ csrf_field() }}
                 
@@ -85,16 +86,16 @@
             $(".mybox").click(function(){
                 if(rgb2hex($(this).css("color")) == "#ff0000"){
                     $(this).css("color","black");
-                    $(this).css("border","1px solid #98bf21");  
+                    $(this).css("border","3px solid #98bf21");  
                     $(this).css("border-collapse","collapse");              
                 }
                 else{
                     $(this).css("color","red");
-                    $(this).css("border","3px solid #333");
+                    $(this).css("border","4px solid #333");
                     $(this).css("border-collapse","collapse");
                 }
             });
-            //
+            
             $("#myTable tr").hover(function(){   
                 $(this).children("td").addClass("table-hover")   
             },function(){   
@@ -126,18 +127,9 @@
                 else{
                     document.getElementById('dataForm').submit();
                 }
-
             });
 
-            $("#clear").click(function(){
-                $(".mybox").each(function(){
-                    if(rgb2hex($(this).css("color")) == "#ff0000"){
-                        $(this).css("color","black");
-                        $(this).css("border","1px solid #98bf21");  
-                        $(this).css("border-collapse","collapse");              
-                    }
-                });
-            });
+            
 
             function rgb2hex(rgb) {
                 rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
@@ -162,7 +154,13 @@
                                         "<td class=\"col-md-8\" onclick=\"updateEvent(this);\">"+
                                         data[i]['name']+
                                         "</td>"+
-                                        
+                                        "<td>参与人：</td>"+
+                                        "<td onmouseover=\"showUserTime(this);\""+
+                                        "onmouseover=\"showUserTime(this);\""+
+                                        "onmouseout=\"cleanTable()\">"+
+                                        getUsersNameTag(data[i])+
+                                        "<input id=\"userTimes\" hidden=\"true\" value="+getUsersTimes(data[i])+">"+
+                                        "</td>"+
                                     "</tr>"
                                 );
                                 //console.log(data[i])
@@ -182,9 +180,104 @@
                     $('#hiddenDiv').collapse('hide');
                     $('#tableHint').collapse('show');
                 }
-                
+            }
+            
+            function getUsersNameTag(data){
+                var users = "";
+                for(var j = 0; j<data['users'].length; j++){
+                    if(j==0){
+                        users = "<a href=\"#\" onclick=\"getUser(this);\" onmouseover=\"getUser(this);\">"+data['users'][j]['name']+"</a>";
+                    }else{
+                        users = users+","+"<a href=\"#\" onclick=\"getUser(this);\" onmouseover=\"getUser(this);\">"+data['users'][j]['name']+"</a>";
+                    }
+                }
+                //<a onclick=\"getUser(this);\">"+getUsersName(data[i])+"</a>"
+                return users;
+            }
+            var currentUser = "";
+            var currentTime = "";
+
+            function showUserTime(datas){
+                currentTime = $(datas).children("input:last-child").val();
+                showUserTimeOnTable();
+            
             }
 
+            function cleanTable(){
+                $(".mybox").each(function(){
+                    if(rgb2hex($(this).css("color")) != "black"){
+                        $(this).css("color","black");
+                        $(this).css("border","3px solid #98bf21");   
+                    }
+                });
+            }
+
+            $("#clear").click(function(){
+                cleanTable();
+            });
+
+            function getUser(data){
+                currentUser = data.innerHTML;
+            }
+
+            function showUserTimeOnTable(){
+                var index = 0;
+                
+                for(var i=0;i<currentTime.split("#").length;i++ ){
+                    if(currentUser == currentTime.split("#")[i].split(";")[0]){
+                        index = i;
+                        break;
+                    }
+                }
+
+                
+                //currentUser,currentTime
+                var user = currentUser == currentTime.split("#")[index].split(";")[0];
+                //console.log(currentTime.split("#")[index].split(";")[1]);
+                var times = currentTime.split("#")[index].split(";")[1];
+                var times = times.split("$");
+                
+                var trList = $("#myTable").children("tbody").children("tr");
+                for (var i=1;i<trList.length;i++) {
+                    
+                    var tdArr = trList.eq(i).find("td");
+
+                    var day = tdArr.eq(0)[0];
+
+                    for (var j = 0 ; j < times.length; j++) {
+                        var freeDay = times[j].split(",")[0];
+                        var freeTime = times[j].split(",")[1];
+                        if(freeDay == day.innerHTML){
+                            for (var k=1;k<16;k++){
+                                if(freeTime == tdArr.eq(k)[0].innerHTML){
+                                    //tdArr.eq(k).css("background-color","#99FFFF");
+                                    //tdArr.eq(k).css("color","blue");
+                                    tdArr.eq(k).css("border","4px solid #0066FF");
+                                    //tdArr.eq(k).css("border-style","");
+                                    
+                                }
+                            }
+                            // $(".mybox").find(freeDay).children(freeTime).css("background-color","green");
+                            
+                            //console.log(day.innerHTML);
+                        }
+                    }  
+                }
+
+            }
+
+            function getUsersTimes(data){
+                var times = "";
+                for(var j = 0; j<data['users'].length; j++){
+                    if(j==0){
+                        times = data['users'][j]['name']+";"+data['users'][j]['times'];
+                    }else{
+                        times = times+"#"+data['users'][j]['name']+";"+data['users'][j]['times'] ;
+                    }
+                }
+                
+                return times;
+            }
             function updateEvent(row){
                 $("#event").val(row.innerHTML);
             }
@@ -192,6 +285,7 @@
                 $('#tableHint').collapse('show');
             };
 
+            
 
         </script>
         

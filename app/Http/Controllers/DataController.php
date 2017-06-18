@@ -9,13 +9,17 @@ use Illuminate\Http\Request;
 class DataController extends Controller
 {
     public function store(){
-    	$event = new Event;
-    	$event->name = request('event');
-    	$event->secure_code = bcrypt(str_random(10));
-    	$event->private = false;
-    	$event->status = 'unsettled';
-    	$event->save();
+        $event = Event::where('name', request('event'))->first();
 
+        if($event == null ){
+            $event = new Event;
+            $event->name = request('event');
+            $event->secure_code = bcrypt(str_random(10));
+            $event->private = false;
+            $event->status = 'unsettled';
+            $event->save();
+        }
+        
     	$time = new Time;
     	$time->event_id = $event->id;
     	$time->name = request('name');

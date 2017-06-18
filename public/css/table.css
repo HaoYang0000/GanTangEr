@@ -5,26 +5,25 @@
         .table-hover{
             font-size:0.7em;
             text-align:left; 
-            background-color:green;
-            color:#ffffff;
+            background-color:#66CC66;
+            color:#000000;
         }
+        
         #myTable
         {
             font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
             width:100%;
-            border-collapse:collapse;
         }
         #myTable td, #myTable th 
         {
             font-size:0.7em;
-            border:1px solid #98bf21;
+            border:3px solid #98bf21;
             padding:3px 7px 2px 7px;
         }
         #myTable th 
         {
             font-size:0.7em;
             text-align:left;
-            
             background-color:#A7C942;
             color:#ffffff;
         }
