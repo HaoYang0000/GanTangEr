@@ -4,8 +4,11 @@
 	@include('layouts.header')
 
 </head>
-<body>
-	<div class="container">
+<body onload="init();">
+	<div id="cloud" style="height: 700px;z-index: -2; position: fixed; height: 0;">
+		<canvas id="canvas" style="height: 700px;z-index: -1; position: fixed; height: 0;"></canvas>
+	</div>
+	<div class="container" >
 		@yield('content')
 	</div>
 

@@ -1,89 +1,267 @@
-    <div id="tableHint" class="collapse" aria-expanded="true">
-        <h1>请先填写或选择活动名称:</h1>
-    </div>
-    <div id="hiddenDiv" class="collapse">
-        <table id="myTable" >
-            <tbody>
-            <tr>
-                <th>日期</th>
-                @foreach($times as $time)
-                    <th>时间</th>
-                @endforeach
-            </tr>
-            <tr>
-                <td class="week">周一</td>
-                @foreach($times as $time)
-                    <td class="mybox">{{$time}}</td>
-                @endforeach
-            </tr>
-            <tr class="alt">
-                <td class="week">周二</td>
-                @foreach($times as $time)
-                    <td class="mybox">{{$time}}</td>
-                @endforeach
-            </tr>
-            <tr>
-                <td class="week">周三</td>
-                @foreach($times as $time)
-                    <td class="mybox">{{$time}}</td>
-                @endforeach
-            </tr>
-            <tr class="alt">
-                <td class="week">周四</td>
-                @foreach($times as $time)
-                    <td class="mybox">{{$time}}</td>
-                @endforeach
-            </tr>
-            <tr>
-                <td class="week">周五</td>
-                @foreach($times as $time)
-                    <td class="mybox">{{$time}}</td>
-                @endforeach
-            </tr>
-            <tr class="alt">
-                <td class="week">周六</td>
-                @foreach($times as $time)
-                    <td class="mybox">{{$time}}</td>
-                @endforeach
-            </tr>
-            <tr>
-                <td class="week">周日</td>
-                @foreach($times as $time)
-                    <td class="mybox">{{$time}}</td>
-                @endforeach
-            </tr>
-            </tbody>
-        </table>
-    </div>
-        <br>
-        <div class="form-group">
-            <form action="/send" method="POST" id="dataForm">
+    <script>links = ['facebook','github','codepen','pinterest','wordpress'];
+$.ferrisWheelButton(links);</script>
+<script id="vs" type="x-shader/x-vertex">
+
+            varying vec2 vUv;
+
+            void main() {
+
+                vUv = uv;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+            }
+
+        </script>
+
+        <script id="fs" type="x-shader/x-fragment">
+
+            uniform sampler2D map;
+
+            uniform vec3 fogColor;
+            uniform float fogNear;
+            uniform float fogFar;
+
+            varying vec2 vUv;
+
+            void main() {
+
+                float depth = gl_FragCoord.z / gl_FragCoord.w;
+                float fogFactor = smoothstep( fogNear, fogFar, depth );
+
+                gl_FragColor = texture2D( map, vUv );
+                gl_FragColor.w *= pow( gl_FragCoord.z, 20.0 );
+                gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor );
+
+            }
+
+        </script>
+
+        <script type="text/javascript">
+
+            if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+            var container;
+            var camera, scene, renderer;
+            var mesh, geometry, material;
+
+            var mouseX = 0, mouseY = 0;
+            var start_time = Date.now();
+
+            var windowHalfX = window.innerWidth / 2;
+            var windowHalfY = window.innerHeight / 2;
+
+            init();
+
+            function init() {
+
+                var container = document.getElementById( 'cloud' );
+                //document.getElementById("window").appendChild( container );
+                //document.body.appendChild( container );
+
+                // Bg gradient
+
+                var canvas = document.getElementById( 'canvas' );
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                var context = canvas.getContext( '2d' );
+
+                var gradient = context.createLinearGradient( 0, 0, 0, canvas.height );
+                gradient.addColorStop(0, "#1e4877");
+                gradient.addColorStop(0.5, "#4584b4");
+
+                context.fillStyle = gradient;
+                context.fillRect(0, 0, canvas.width, canvas.height);
+
+                container.style.background = 'url(' + canvas.toDataURL('image/png') + ')' ;
+                container.style.backgroundSize = '32px 100%';
+
+
+                //
+
+                camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 3000 );
+                camera.position.z = 6000;
+
+                scene = new THREE.Scene();
+
+                geometry = new THREE.Geometry();
+
+                var texture = THREE.ImageUtils.loadTexture( 'cloud10.png', null, animate );
+                texture.magFilter = THREE.LinearMipMapLinearFilter;
+                texture.minFilter = THREE.LinearMipMapLinearFilter;
+
+                var fog = new THREE.Fog( 0x4584b4, - 100, 3000 );
+
+                material = new THREE.ShaderMaterial( {
+
+                    uniforms: {
+
+                        "map": { type: "t", value: texture },
+                        "fogColor" : { type: "c", value: fog.color },
+                        "fogNear" : { type: "f", value: fog.near },
+                        "fogFar" : { type: "f", value: fog.far },
+
+                    },
+                    vertexShader: document.getElementById( 'vs' ).textContent,
+                    fragmentShader: document.getElementById( 'fs' ).textContent,
+                    depthWrite: false,
+                    depthTest: false,
+                    transparent: true
+
+                } );
+
+                var plane = new THREE.Mesh( new THREE.PlaneGeometry( 64, 64 ) );
+
+                for ( var i = 0; i < 100; i++ ) {
+
+                    plane.position.x = Math.random() * 1000 - 500;
+                    plane.position.y = - Math.random() * Math.random() * 100 - 15;
+                    plane.position.z = i;
+                    plane.rotation.z = Math.random() * Math.PI;
+                    plane.scale.x = plane.scale.y = Math.random() * Math.random() * 1.5 + 0.5;
+
+                    THREE.GeometryUtils.merge( geometry, plane );
+
+                }
+
+                mesh = new THREE.Mesh( geometry, material );
+                scene.add( mesh );
+
+                mesh = new THREE.Mesh( geometry, material );
+                mesh.position.z = - 100;
+                scene.add( mesh );
+
+                renderer = new THREE.WebGLRenderer( { antialias: false } );
+                renderer.setSize( window.innerWidth, window.innerHeight );
+                container.appendChild( renderer.domElement );
+
+                document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+                window.addEventListener( 'resize', onWindowResize, false );
+
+            }
+
+            function onDocumentMouseMove( event ) {
+
+                mouseX = ( event.clientX - windowHalfX ) * 0.25;
+                mouseY = ( event.clientY - windowHalfY ) * 0.15;
+
+            }
+
+            function onWindowResize( event ) {
+
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+
+                renderer.setSize( window.innerWidth, window.innerHeight );
+
+            }
+
+            function animate() {
+
+                requestAnimationFrame( animate );
+
+                position = ( ( Date.now() - start_time ) * 0.0005 ) % 100;
+
+                camera.position.x += ( mouseX - camera.position.x ) * 0.0005;
+                camera.position.y += ( - mouseY - camera.position.y ) * 0.0005;
+                camera.position.z = - position + 100;
+
+                renderer.render( scene, camera );
+
+            }
+
+        </script>
+<div class="window" id="window">
+    <div class="page0">
+            <button class="homeButtonCreate"  href="#createTab" data-toggle="tab">创建活动</button>
+            <button class="homeButtonJoin" href="#joinTab" data-toggle="tab">加入活动</button>
+
+            <div class="tab-content">
+                <form action="/create_event" method="POST" id="create_event_form">
                 {{ csrf_field() }}
-                <div class="input-group">
-                    <input type="hidden" id="data" name="data" hidden="true">
-                    <label>活动：</label><input class="form-control" id="event" name="event" oninput="getMessage(this);">
+                <div id="createTab" class="tab-pane fade">
+                    @include('times.page0_create')
                 </div>
-                <table id="eventResult" name="eventResult">
-                   
-                </table>
-                <div class="input-group">
-                    <label>姓名：</label><input class="form-control"  id="name" name="name">
+                </form>
+                <div id="joinTab" class="tab-pane fade">
+                    @include('times.joinActivity')
                 </div>
-            </form>
-            <div >
             </div>
-            
         </div>
 
-        <br>
-        <div class="row">
-            <div class="col-sm-2">
-                <button class="send-button" id="myButton">确认</button>
-            </div>
-            <div class="col-sm-2">
-                <button class="reset-button" id="clear">重选</button>
-            </div>
+
+        <div class="page1">
+            @include('times.page1')
         </div>
+
+
+        <div class="page2">
+            @include('times.page2')
+        </div>
+
+</div>
+    
+
+    <script type="text/javascript">
+    var next = document.getElementById("nextButton-page0");
+
+    var moveDownTarget = document.getElementById("page1-div");
+    //var oTarget_Top = 1375;
+    var moveDownEnd = moveDownTarget.offsetTop;
+    document.getElementById("nextButton-page0").onclick=function(){
+        if($('#event').val() == ""){
+            alert("请填写活动名称！");
+        }
+        else if($('#name').val() == ""){
+            alert("请填写姓名！");
+        }
+        else{
+            moveDown(1,moveDownEnd);
+        } 
+    }
+
+    document.getElementById("backButton-page1").onclick=function(){
+        moveUp((document.getElementById("page1-div").offsetTop),0);
+    }
+    document.getElementById("backButton-page2").onclick=function(){
+        moveUp((document.getElementById("page2-div").offsetTop),(document.getElementById("page1-div").offsetTop));
+    }
+
+    function moveDown(speed,top){
+        var timer = '';
+        timer = setInterval(function(){
+            var t = document.documentElement.scrollTop || document.body.scrollTop;
+            if(t < top){
+                if(document.documentElement.scrollTop){
+                    document.documentElement.scrollTop= speed;
+                }else {
+                    document.body.scrollTop=speed;
+                }
+                speed+=10;
+            }else{
+                clearInterval(timer);
+            }
+        },10);
+    }
+    function moveUp(speed,top){
+        var timer = '';
+        timer = setInterval(function(){
+            var t = document.documentElement.scrollTop || document.body.scrollTop;
+            if(t > top){
+                if(document.documentElement.scrollTop){
+                    document.documentElement.scrollTop= speed;
+                }else {
+                    document.body.scrollTop=speed;
+                }
+                speed-=10;
+            }else{
+                clearInterval(timer);
+            }
+        },10);
+    }
+</script>
+
+
 
         <script>
             
@@ -94,27 +272,52 @@
                 $(this).children("td").removeClass("table-hover")
             });
 
-            $("#myButton").click(function() {
+            $("#confirmButton").click(function() {
+                var resultCounter = 0;
+                var temp = document.getElementById("mdp").value.split(",");
+                var dates = $('#mdp').multiDatesPicker('getDates');
                 var counter = 0;
-                $(".mybox").each(function() {
-                    if (rgb2hex($(this).css("color")) == "#ff0000") {
-                        counter = counter + 1;
-                        var tr = $(this).closest("tr");
-                        var col_data = tr.find("td:eq(0)").text();
-                        var temp = col_data + "," + $(this).text() + "$" + $("#data").val();
-                        $("#data").val(temp);
-                        //alert(temp)
-                    }
-                });
+                
+                var index = 0;
+                var currentDate = dates[index];
+                $(".check").each(function() {
+                    // if (rgb2hex($(this).css("color")) == "#ff0000") {
+                    //     counter = counter + 1;
+                    //     var tr = $(this).closest("tr");
+                    //     var col_data = tr.find("td:eq(0)").text();
+                    //     var temp = col_data + "," + $(this).text() + "$" + $("#data").val();
+                    //     $("#data").val(temp);
+                    //     //alert(temp)
+                    // }
 
-                if (counter == 0) {
-                    alert("请选择至少一个时间！");
-                } else if (document.getElementById('name').value == "") {
-                    alert("请填写姓名！");
-                } else if (document.getElementById('event').value == "") {
-                    alert("请填写活动名！");
-                } else {
-                    document.getElementById('dataForm').submit();
+
+                    if(counter == 5){
+                        index = index+1;
+                        currentDate = dates[index];
+                    }
+
+                    if($(this).children().prop('checked') == true){
+                        // alert($(this).text());
+                        
+                        resultCounter++;
+                        var temp = dates[index]+","+$(this).text()+"$"+$("#data").val();
+                        $("#data").val(temp);
+
+                    }
+                    
+
+                });
+                
+                if (resultCounter == 0) {
+                    alert("请选择至少一个具体时间！");
+                } 
+                //else if (document.getElementById('name').value == "") {
+                //     alert("请填写姓名！");
+                // } else if (document.getElementById('event').value == "") {
+                //     alert("请填写活动名！");
+                // } 
+                else {
+                    document.getElementById('create_event_form').submit();
                 }
             });
 
@@ -161,13 +364,13 @@
                     $("#eventResult").empty();
                 }
                 var len = document.getElementById('event').value.length;
-                if (len > 0) {
-                    $('#tableHint').collapse('hide');
-                    $('#hiddenDiv').collapse('show');
-                } else {
-                    $('#hiddenDiv').collapse('hide');
-                    $('#tableHint').collapse('show');
-                }
+                // if (len > 0) {
+                //     $('#tableHint').collapse('hide');
+                //     $('#hiddenDiv').collapse('show');
+                // } else {
+                //     $('#hiddenDiv').collapse('hide');
+                //     $('#tableHint').collapse('show');
+                // }
             }
 
             function getUsersNameTag(data) {
@@ -216,7 +419,52 @@
             }
 
             $("#clear").click(function() {
-                cleanTable();
+                var temp = document.getElementById("mdp").value.split(",");
+                for (var i = temp.length - 1; i >= 0; i--) {
+                    $('#mdp').multiDatesPicker('removeIndexes', i);
+                }
+                //$("#exactTime").filter(":contains('日期')").remove();
+                $("#exactTime").empty();
+                //$('#mdp').multiDatesPicker('removeIndexes', 0);
+                //cleanTable();
+            });
+
+            function convertDate(date){
+                var result = date.split("-");
+
+                return result[1]+"月"+result[2]+"日";
+            }
+
+            $('#affirmDate').click(function(){
+                if($("#mdp").val() == ""){
+                    alert("请选择至少一个日期");
+                }else{
+
+
+                    $("#exactTime").empty();
+                    var temp = document.getElementById("mdp").value.split(",");
+                    var dates = $('#mdp').multiDatesPicker('getDates');
+                    for (var i = 0; i < temp.length; i++) {
+
+                        $( "#exactTime" ).append( 
+                            "<h3>日期: "+convertDate(dates[i])+"</h3>"+
+                            "<button class=\"btn btn-success check\" type=\"button\" onclick=\"checkIt(this);\">早上：8：00-10：00&nbsp;&nbsp;"
+                            +"<input type=\"checkbox\" name=\"morning\"></button>&nbsp;&nbsp;"+
+                            "<button class=\"btn btn-warning check\" type=\"button\" onclick=\"checkIt(this);\">中午：11：00-13：00&nbsp;&nbsp;"
+                            +"<input type=\"checkbox\" name=\"morning\"></button>&nbsp;&nbsp;"+
+                            "<button class=\"btn btn-info check\" type=\"button\" onclick=\"checkIt(this);\">下午：14：00-17：00&nbsp;&nbsp;"
+                            +"<input type=\"checkbox\" name=\"morning\"></button>&nbsp;&nbsp;"+
+                            "<button class=\"btn btn-primary check\" type=\"button\" onclick=\"checkIt(this);\">晚上：18：00-22：00&nbsp;&nbsp;"
+                            +"<input type=\"checkbox\" name=\"morning\"></button>&nbsp;&nbsp;"+
+                            "<button class=\"btn btn-danger check\" type=\"button\" onclick=\"checkIt(this);\">通宵：23：00-7：00&nbsp;&nbsp;"
+                            +"<input type=\"checkbox\" name=\"morning\"></button>&nbsp;&nbsp;");
+                    }
+                    
+                    var start = document.getElementById("page1-div").offsetTop;
+                    var moveDownTarget = document.getElementById("page2-div");
+                    var moveDownEnd = moveDownTarget.offsetTop;
+                    moveDown(start,moveDownEnd);
+                }
             });
 
             function getUser(data) {
@@ -279,6 +527,7 @@
                 $("#event").val(row.innerHTML);
             }
             window.onload = function() {
+                moveUp((window.screenLeft?window.screenLeft: window.screenX),0);
                 $('#tableHint').collapse('show');
             };
 
@@ -304,7 +553,6 @@
                 selected: function(event, ui) {
                     var color = rgb2hex($(ui.selected).css("color"));
                     if (color == "#ff0000") {
-                        console.log(1)
                         $(ui.selected).css("color", "#000000");
                     }else {
                         $(ui.selected).css("color", "#ff0000");

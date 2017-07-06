@@ -20,5 +20,5 @@ Route::get('/', function (){
 	return view('index',compact('times'));
 });
 
-Route::post('/send', 'DataController@store');
+Route::post('/create_event', 'DataController@store');
 Route::get('/getmsg','AjaxController@index');

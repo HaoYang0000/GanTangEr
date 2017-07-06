@@ -13,11 +13,11 @@ class CreateTimesTable extends Migration
      */
     public function up()
     {
-        Schema::create('times', function (Blueprint $table) {
+        Schema::create('participants', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('event_id');
+            $table->integer('user_id')->nullable();
             $table->string('name');
-            $table->text('times');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateTimesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('times');
+        Schema::dropIfExists('participants');
     }
 }

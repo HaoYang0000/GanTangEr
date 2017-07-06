@@ -15,7 +15,7 @@ class DataController extends Controller
             $event = new Event;
             $event->name = request('event');
             $event->secure_code = bcrypt(str_random(10));
-            $event->private = false;
+            $event->private = request('if_private');;
             $event->status = 'unsettled';
             $event->save();
         }

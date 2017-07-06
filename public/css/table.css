@@ -11,6 +11,111 @@
             
 
         }
+        .window{
+            height: 100%;
+            width: 80%;
+            margin: 0 auto;
+            border-top:1px solid silver;
+            border-left:1px solid silver;
+            border-right:1px solid silver;
+        }
+
+
+        .page0 {
+            border-top:1px solid silver;
+            height: 700px;
+            width: 100%;
+            
+            /*background: #FFFBE8;
+            opacity:0.5;*/
+            background-color: rgba(255,251,232,0.5);
+        }
+        
+        .page1 {
+            border-top:1px solid silver;
+            height: 700px;
+            width: 100%;
+           
+            background-color: rgba(255,251,232,0.5);
+            /*background: #FFFFFF;*/
+            /*padding-bottom: 100px;*/
+        }
+
+        .page2 {
+            border-top:1px solid silver;
+            height: 700px;
+            width: 100%;
+
+            background-color: rgba(255,251,232,0.5);
+            /*background: #FFFFFF;*/
+            /*padding-bottom: 100px;*/
+        }
+
+        .table-div{
+
+        }
+
+        .check{
+            margin: 2px;
+        }
+
+
+
+        
+
+        .homeButtonCreate{
+            margin-top: 5%;
+            margin-left: 15%;
+          font-family: Arial;
+          color: #ffffff;
+          font-size: 47px;
+          padding: 28px;
+          text-decoration: none;
+          -webkit-border-radius: 44px;
+          -moz-border-radius: 44px;
+          border-radius: 44px;
+          -webkit-box-shadow: 0px 1px 3px #666666;
+          -moz-box-shadow: 0px 1px 3px #666666;
+          box-shadow: 0px 1px 3px #666666;
+          text-shadow: 4px 2px 3px #3d263d;
+          border: solid #1cb3d9 2px;
+          background: #3e92c9;
+        }
+
+        .homeButtonCreate:hover {
+          background: #20e687;
+        }
+
+        .homeButtonJoin{
+            margin-top: 5%;
+            margin-left: 15%;
+          font-family: Arial;
+          color: #ffffff;
+          font-size: 47px;
+          padding: 28px;
+          text-decoration: none;
+          -webkit-border-radius: 44px;
+          -moz-border-radius: 44px;
+          border-radius: 44px;
+          -webkit-box-shadow: 0px 1px 3px #666666;
+          -moz-box-shadow: 0px 1px 3px #666666;
+          box-shadow: 0px 1px 3px #666666;
+          text-shadow: 4px 2px 3px #3d263d;
+          border: solid #1cb3d9 2px;
+          background: #c26969;
+        }
+
+        .homeButtonJoin:hover {
+          background: #20e687;
+        }
+
+        #myTable{
+           
+        }
+
+        .middle-content{
+            margin-left:15%;
+        }
         
         
         #myTable
@@ -56,17 +161,36 @@
             -webkit-transition: width 0.4s ease-in-out;
             transition: width 0.4s ease-in-out;
         }
-
-        /* When the input field gets focus, change its width to 100% */
         #event:focus {
             width: 200%;
         }
-body{
-    background-color: #FFFBE8;
 
+        #name {
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+        #name:focus {
+            width: 200%;
+        }
+
+        /* When the input field gets focus, change its width to 100% */
+        #mdp:focus {
+            /*width: 80%;*/
+        }
+
+        #mdp {
+            width: 50%;
+            /*-webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;*/
+        }
+
+        /* When the input field gets focus, change its width to 100% */
+        
+body{
+    background-color: #4584b4;
     font-weight: bold;
     font-family: "Open Sans";
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 .button {

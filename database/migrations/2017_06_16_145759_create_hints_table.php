@@ -13,7 +13,7 @@ class CreateHintsTable extends Migration
      */
     public function up()
     {
-        Schema::create('hints', function (Blueprint $table) {
+        Schema::create('event_questions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('event_id');
             $table->string('question');
@@ -29,6 +29,6 @@ class CreateHintsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hints');
+        Schema::dropIfExists('event_questions');
     }
 }
