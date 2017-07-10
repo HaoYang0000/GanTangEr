@@ -12,8 +12,8 @@
 
         }
         .window{
-            height: 100%;
-            width: 80%;
+            height: 100vh;
+            width: 100vh;
             margin: 0 auto;
             border-top:1px solid silver;
             border-left:1px solid silver;
@@ -23,8 +23,8 @@
 
         .page0 {
             border-top:1px solid silver;
-            height: 700px;
-            width: 100%;
+            height: 100vh;
+            width: 100vh;
             
             /*background: #FFFBE8;
             opacity:0.5;*/
@@ -33,8 +33,8 @@
         
         .page1 {
             border-top:1px solid silver;
-            height: 700px;
-            width: 100%;
+            height: 100vh;
+            width: 100vh;
            
             background-color: rgba(255,251,232,0.5);
             /*background: #FFFFFF;*/
@@ -43,8 +43,8 @@
 
         .page2 {
             border-top:1px solid silver;
-            height: 700px;
-            width: 100%;
+            height: 100vh;
+            width: 100vh;
 
             background-color: rgba(255,251,232,0.5);
             /*background: #FFFFFF;*/

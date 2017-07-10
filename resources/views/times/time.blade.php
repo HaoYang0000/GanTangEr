@@ -160,7 +160,7 @@ $.ferrisWheelButton(links);</script>
 
                 requestAnimationFrame( animate );
 
-                position = ( ( Date.now() - start_time ) * 0.0005 ) % 100;
+                position = ( ( Date.now() - start_time ) * 0.0075 ) % 100;
 
                 camera.position.x += ( mouseX - camera.position.x ) * 0.0005;
                 camera.position.y += ( - mouseY - camera.position.y ) * 0.0005;
@@ -462,7 +462,7 @@ $.ferrisWheelButton(links);</script>
                     
                     var start = document.getElementById("page1-div").offsetTop;
                     var moveDownTarget = document.getElementById("page2-div");
-                    var moveDownEnd = moveDownTarget.offsetTop;
+                    var moveDownEnd = moveDownTarget.offsetTop-1;
                     moveDown(start,moveDownEnd);
                 }
             });
