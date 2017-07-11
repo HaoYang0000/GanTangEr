@@ -173,8 +173,10 @@ $.ferrisWheelButton(links);</script>
         </script>
 <div class="window" id="window">
     <div class="page0">
+        <div class="front_page_button_group">
             <button class="homeButtonCreate"  href="#createTab" data-toggle="tab">创建活动</button>
             <button class="homeButtonJoin" href="#joinTab" data-toggle="tab">加入活动</button>
+        </div>
 
             <div class="tab-content">
                 <form action="/create_event" method="POST" id="create_event_form">

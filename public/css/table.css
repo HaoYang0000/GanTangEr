@@ -61,52 +61,56 @@
 
 
 
-        
+        .front_page_button_group{
+          width: 100vh;
+          margin: 0 auto;
+          text-align:center;
+        }
 
         .homeButtonCreate{
-            margin-top: 5%;
-            margin-left: 15%;
+          margin: 5vh ;
           font-family: Arial;
           color: #ffffff;
-          font-size: 47px;
-          padding: 28px;
+          font-size: 5vh;
+          padding: 2vh;
           text-decoration: none;
-          -webkit-border-radius: 44px;
-          -moz-border-radius: 44px;
-          border-radius: 44px;
+          -webkit-border-radius: 5vh;
+          -moz-border-radius: 5vh;
+          border-radius: 5vh;
           -webkit-box-shadow: 0px 1px 3px #666666;
           -moz-box-shadow: 0px 1px 3px #666666;
           box-shadow: 0px 1px 3px #666666;
           text-shadow: 4px 2px 3px #3d263d;
-          border: solid #1cb3d9 2px;
-          background: #3e92c9;
+          border: solid #F9C23C 2px;
+          background: transparent;
+          transition: all 0.3s ease 0s;
         }
 
         .homeButtonCreate:hover {
-          background: #20e687;
+          background: #FF7B7B;
         }
 
         .homeButtonJoin{
-            margin-top: 5%;
-            margin-left: 15%;
+          margin: 5vh ;
           font-family: Arial;
           color: #ffffff;
-          font-size: 47px;
-          padding: 28px;
+          font-size: 5vh;
+          padding: 2vh;
           text-decoration: none;
-          -webkit-border-radius: 44px;
-          -moz-border-radius: 44px;
-          border-radius: 44px;
+          -webkit-border-radius: 5vh;
+          -moz-border-radius: 5vh;
+          border-radius: 5vh;
           -webkit-box-shadow: 0px 1px 3px #666666;
           -moz-box-shadow: 0px 1px 3px #666666;
           box-shadow: 0px 1px 3px #666666;
           text-shadow: 4px 2px 3px #3d263d;
-          border: solid #1cb3d9 2px;
-          background: #c26969;
+          border: solid #F9C23C 2px;
+           background: transparent;
+          transition: all 0.3s ease 0s;
         }
 
         .homeButtonJoin:hover {
-          background: #20e687;
+          background: #FF7B7B;
         }
 
         #myTable{
@@ -114,7 +118,7 @@
         }
 
         .middle-content{
-            margin-left:15%;
+            margin-left:20vh;
         }
         
         
@@ -227,17 +231,17 @@ body{
 
 
 .send-button{
-  height: 2.5em;
-  padding: 0.2em 1em 0.2em 2.25em;
-  font-size: 1em;
+         
+  font-size: 1.5vh;
+  padding: 1vh;
   font-weight: bold;
   font-family: "Open Sans";
   text-transform: uppercase;
   color: #696666;
-  background: url(https://i.imgur.com/Th606mh.png) no-repeat scroll 0.75em 0.07em transparent;
-  background-size: 1em 4em;
-  border-radius: 2em;
-  border: 0.15em solid #F9C23C;
+  background: url(https://i.imgur.com/Th606mh.png) no-repeat scroll 0vh 4vh transparent;
+  background-size: 2vh 4vh;
+  border-radius: 2vh;
+  border: 0.15vh solid #F9C23C;
   cursor: pointer;
   transition: all 0.3s ease 0s;
 }
@@ -245,29 +249,28 @@ body{
     color: #fff;
     background-color: #EAA502;
     border-color: #EAA502;
-    background-position: 0.75em bottom;
+    background-position: 0.75vh bottom;
     -webkit-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 .send-button:focus {
-    background-position: 2em -4em;
+    background-position: 2vh -4vh;
     -webkit-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
 .reset-button{
-  height: 2.5em;
-  padding: 0.2em 1em 0.2em 1.25em;
-  font-size: 1em;
+  font-size: 1.5vh;
+  padding: 1vh;
   font-weight: bold;
   font-family: "Open Sans";
   text-transform: uppercase;
   color: #696666;
   background-color: transparent;
-  border-radius: 2em;
-  border: 0.15em solid #F9C23C;
+  border-radius: 2vh;
+  border: 0.15vh solid #F9C23C;
   cursor: pointer;
   transition: all 0.3s ease 0s;
 }
@@ -275,13 +278,13 @@ body{
     color: #fff;
     background-color: #FF7B7B;
     border-color: #EAA502;
-    background-position: 0.75em bottom;
+    background-position: 0.75vh bottom;
     -webkit-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 .reset-button:focus {
-    background-position: 2em -4em;
+    background-position: 2vh -4vh;
     -webkit-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;

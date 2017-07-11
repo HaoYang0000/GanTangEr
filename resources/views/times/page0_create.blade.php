@@ -1,7 +1,7 @@
 <div class="middle-content">
 {{-- <div id="tableHint" class="collapse" aria-expanded="true"> --}}
 <div id="tableHint">
-    <h1>请先填写活动名称:</h1>
+    <h3>请先填写活动名称:</h3>
 </div>
 <br>
 

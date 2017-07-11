@@ -3,7 +3,7 @@
     <div id="page2-div"></div>
     	
         <div class="row">
-        <h1>选择具体时间：</h1>
+        <h3>选择具体时间：</h3>
         <div id="exactTime">
            {{--  <button class="btn btn-primary " type="button" onclick="checkIt(this);">
 			  	早上：8：00-10：00&nbsp;&nbsp;<input type="checkbox" name="morning">
