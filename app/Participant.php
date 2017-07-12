@@ -5,7 +5,7 @@ namespace App;
 use App\Event;
 use Illuminate\Database\Eloquent\Model;
 
-class Time extends Model
+class Participant extends Model
 {
     protected $fillable = [
         'name', 'times',

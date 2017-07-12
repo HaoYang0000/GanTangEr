@@ -107,7 +107,7 @@
     		'width': sizepx,
   			'height': sizepx,
   			'right':(size/2)+'px',
-  			'bottom': (size/2)+'px'
+  			'bottom': '(size/2)+''px'
     	});
     	$('div',sb).css({
     		'transition':trans,

@@ -1,232 +1,46 @@
-    <script>links = ['facebook','github','codepen','pinterest','wordpress'];
-$.ferrisWheelButton(links);</script>
-<script id="vs" type="x-shader/x-vertex">
-
-            varying vec2 vUv;
-
-            void main() {
-
-                vUv = uv;
-                gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-
-            }
-
-        </script>
-
-        <script id="fs" type="x-shader/x-fragment">
-
-            uniform sampler2D map;
-
-            uniform vec3 fogColor;
-            uniform float fogNear;
-            uniform float fogFar;
-
-            varying vec2 vUv;
-
-            void main() {
-
-                float depth = gl_FragCoord.z / gl_FragCoord.w;
-                float fogFactor = smoothstep( fogNear, fogFar, depth );
-
-                gl_FragColor = texture2D( map, vUv );
-                gl_FragColor.w *= pow( gl_FragCoord.z, 20.0 );
-                gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor );
-
-            }
-
-        </script>
-
-        <script type="text/javascript">
-
-            if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
-
-            var container;
-            var camera, scene, renderer;
-            var mesh, geometry, material;
-
-            var mouseX = 0, mouseY = 0;
-            var start_time = Date.now();
-
-            var windowHalfX = window.innerWidth / 2;
-            var windowHalfY = window.innerHeight / 2;
-
-            init();
-
-            function init() {
-
-                var container = document.getElementById( 'cloud' );
-                //document.getElementById("window").appendChild( container );
-                //document.body.appendChild( container );
-
-                // Bg gradient
-
-                var canvas = document.getElementById( 'canvas' );
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-
-                var context = canvas.getContext( '2d' );
-
-                var gradient = context.createLinearGradient( 0, 0, 0, canvas.height );
-                gradient.addColorStop(0, "#1e4877");
-                gradient.addColorStop(0.5, "#4584b4");
-
-                context.fillStyle = gradient;
-                context.fillRect(0, 0, canvas.width, canvas.height);
-
-                container.style.background = 'url(' + canvas.toDataURL('image/png') + ')' ;
-                container.style.backgroundSize = '32px 100%';
-
-
-                //
-
-                camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 3000 );
-                camera.position.z = 6000;
-
-                scene = new THREE.Scene();
-
-                geometry = new THREE.Geometry();
-
-                var texture = THREE.ImageUtils.loadTexture( 'cloud10.png', null, animate );
-                texture.magFilter = THREE.LinearMipMapLinearFilter;
-                texture.minFilter = THREE.LinearMipMapLinearFilter;
-
-                var fog = new THREE.Fog( 0x4584b4, - 100, 3000 );
-
-                material = new THREE.ShaderMaterial( {
-
-                    uniforms: {
-
-                        "map": { type: "t", value: texture },
-                        "fogColor" : { type: "c", value: fog.color },
-                        "fogNear" : { type: "f", value: fog.near },
-                        "fogFar" : { type: "f", value: fog.far },
-
-                    },
-                    vertexShader: document.getElementById( 'vs' ).textContent,
-                    fragmentShader: document.getElementById( 'fs' ).textContent,
-                    depthWrite: false,
-                    depthTest: false,
-                    transparent: true
-
-                } );
-
-                var plane = new THREE.Mesh( new THREE.PlaneGeometry( 64, 64 ) );
-
-                for ( var i = 0; i < 100; i++ ) {
-
-                    plane.position.x = Math.random() * 1000 - 500;
-                    plane.position.y = - Math.random() * Math.random() * 100 - 15;
-                    plane.position.z = i;
-                    plane.rotation.z = Math.random() * Math.PI;
-                    plane.scale.x = plane.scale.y = Math.random() * Math.random() * 1.5 + 0.5;
-
-                    THREE.GeometryUtils.merge( geometry, plane );
-
-                }
-
-                mesh = new THREE.Mesh( geometry, material );
-                scene.add( mesh );
-
-                mesh = new THREE.Mesh( geometry, material );
-                mesh.position.z = - 100;
-                scene.add( mesh );
-
-                renderer = new THREE.WebGLRenderer( { antialias: false } );
-                renderer.setSize( window.innerWidth, window.innerHeight );
-                container.appendChild( renderer.domElement );
-
-                document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-                window.addEventListener( 'resize', onWindowResize, false );
-
-            }
-
-            function onDocumentMouseMove( event ) {
-
-                mouseX = ( event.clientX - windowHalfX ) * 0.25;
-                mouseY = ( event.clientY - windowHalfY ) * 0.15;
-
-            }
-
-            function onWindowResize( event ) {
-
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-
-                renderer.setSize( window.innerWidth, window.innerHeight );
-
-            }
-
-            function animate() {
-
-                requestAnimationFrame( animate );
-
-                position = ( ( Date.now() - start_time ) * 0.0075 ) % 100;
-
-                camera.position.x += ( mouseX - camera.position.x ) * 0.0005;
-                camera.position.y += ( - mouseY - camera.position.y ) * 0.0005;
-                camera.position.z = - position + 100;
-
-                renderer.render( scene, camera );
-
-            }
-
-        </script>
+@include('layouts.cloud_background')
+@include('layouts.ferrisWheel')
 <div class="window" id="window">
-    <div class="page0">
+    <div class="page0" id="page0">
         <div class="front_page_button_group">
             <button class="homeButtonCreate"  href="#createTab" data-toggle="tab">创建活动</button>
             <button class="homeButtonJoin" href="#joinTab" data-toggle="tab">加入活动</button>
         </div>
 
             <div class="tab-content">
-                <form action="/create_event" method="POST" id="create_event_form">
-                {{ csrf_field() }}
-                <div id="createTab" class="tab-pane fade">
-                    @include('times.page0_create')
-                </div>
-                </form>
+                    <div id="createTab" class="tab-pane fade">
+                        <form action="/create_event" method="POST" id="create_event_form">
+                            {{ csrf_field() }}
+                            @include('pages.page0_create')
+                        </form>
+                        <div class="page1" id="page1">
+                            @include('pages.page1')
+                        </div>
+
+
+                        <div class="page2" id="page2">
+                            @include('pages.page2')
+                        </div>
+                    </div>
+
                 <div id="joinTab" class="tab-pane fade">
-                    @include('times.joinActivity')
+                    @include('pages.page0_join')
                 </div>
             </div>
         </div>
-
-
-        <div class="page1">
-            @include('times.page1')
-        </div>
-
-
-        <div class="page2">
-            @include('times.page2')
-        </div>
-
 </div>
     
 
     <script type="text/javascript">
-    var next = document.getElementById("nextButton-page0");
 
-    var moveDownTarget = document.getElementById("page1-div");
-    //var oTarget_Top = 1375;
-    var moveDownEnd = moveDownTarget.offsetTop;
-    document.getElementById("nextButton-page0").onclick=function(){
-        if($('#event').val() == ""){
-            alert("请填写活动名称！");
-        }
-        else if($('#name').val() == ""){
-            alert("请填写姓名！");
-        }
-        else{
-            moveDown(1,moveDownEnd);
-        } 
-    }
+    
+    
 
     document.getElementById("backButton-page1").onclick=function(){
-        moveUp((document.getElementById("page1-div").offsetTop),0);
+        moveUp((document.getElementById("page1").offsetTop),0);
     }
     document.getElementById("backButton-page2").onclick=function(){
-        moveUp((document.getElementById("page2-div").offsetTop),(document.getElementById("page1-div").offsetTop));
+        moveUp((document.getElementById("page2").offsetTop),(document.getElementById("page1").offsetTop));
     }
 
     function moveDown(speed,top){
@@ -313,11 +127,7 @@ $.ferrisWheelButton(links);</script>
                 if (resultCounter == 0) {
                     alert("请选择至少一个具体时间！");
                 } 
-                //else if (document.getElementById('name').value == "") {
-                //     alert("请填写姓名！");
-                // } else if (document.getElementById('event').value == "") {
-                //     alert("请填写活动名！");
-                // } 
+               
                 else {
                     document.getElementById('create_event_form').submit();
                 }
@@ -366,13 +176,7 @@ $.ferrisWheelButton(links);</script>
                     $("#eventResult").empty();
                 }
                 var len = document.getElementById('event').value.length;
-                // if (len > 0) {
-                //     $('#tableHint').collapse('hide');
-                //     $('#hiddenDiv').collapse('show');
-                // } else {
-                //     $('#hiddenDiv').collapse('hide');
-                //     $('#tableHint').collapse('show');
-                // }
+                
             }
 
             function getUsersNameTag(data) {
@@ -384,7 +188,7 @@ $.ferrisWheelButton(links);</script>
                         users = users + "," + "<a href=\"#\" onclick=\"getUser(this);\" onmouseover=\"getUser(this);\">" + data['users'][j]['name'] + "</a>";
                     }
                 }
-                //<a onclick=\"getUser(this);\">"+getUsersName(data[i])+"</a>"
+                
                 return users;
             }
             var currentUser = "";
@@ -449,7 +253,7 @@ $.ferrisWheelButton(links);</script>
                     for (var i = 0; i < temp.length; i++) {
 
                         $( "#exactTime" ).append( 
-                            "<h3>日期: "+convertDate(dates[i])+"</h3>"+
+                            "<h4 class=\"page-font\">日期: "+convertDate(dates[i])+"</h4>"+
                             "<button class=\"btn btn-success check\" type=\"button\" onclick=\"checkIt(this);\">早上：8：00-10：00&nbsp;&nbsp;"
                             +"<input type=\"checkbox\" name=\"morning\"></button>&nbsp;&nbsp;"+
                             "<button class=\"btn btn-warning check\" type=\"button\" onclick=\"checkIt(this);\">中午：11：00-13：00&nbsp;&nbsp;"
@@ -462,8 +266,8 @@ $.ferrisWheelButton(links);</script>
                             +"<input type=\"checkbox\" name=\"morning\"></button>&nbsp;&nbsp;");
                     }
                     
-                    var start = document.getElementById("page1-div").offsetTop;
-                    var moveDownTarget = document.getElementById("page2-div");
+                    var start = document.getElementById("page1").offsetTop;
+                    var moveDownTarget = document.getElementById("page2");
                     var moveDownEnd = moveDownTarget.offsetTop-1;
                     moveDown(start,moveDownEnd);
                 }
@@ -509,7 +313,6 @@ $.ferrisWheelButton(links);</script>
                         }
                     }
                 }
-
             }
 
             function getUsersTimes(data) {
@@ -533,22 +336,6 @@ $.ferrisWheelButton(links);</script>
                 $('#tableHint').collapse('show');
             };
 
-            // $(".mybox").click(function() {
-            //     var color = rgb2hex($(this).css("color"));
-            //     console.log(color);
-            //     if (color == "#ff0000") {
-            //         console.log(1)
-            //         $(this).css("color", "#000000");
-            //         //$(this).css("background-color","white");  
-            //         $(this).css("border-collapse","collapse");              
-            //     }else {
-            //         console.log(2)
-            //         $(this).css("color", "#ff0000");
-            //         //$(this).css("background-color","#33D4FF");
-            //         // $(this).css("border","3px solid #333");
-            //         $(this).css("border-collapse","collapse");
-            //     }
-            // });
 
             $("#myTable").selectable({
                 filter: 'tbody tr td',

@@ -17,6 +17,7 @@ class CreateTimesTable extends Migration
             $table->increments('id');
             $table->integer('event_id');
             $table->integer('user_id')->nullable();
+            $table->string('times');
             $table->string('name');
             $table->timestamps();
         });

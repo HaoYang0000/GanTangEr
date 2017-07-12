@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use App\Time;
+use App\Participant;
 use Illuminate\Http\Request;
 
 class DataController extends Controller
@@ -20,12 +20,12 @@ class DataController extends Controller
             $event->save();
         }
         
-    	$time = new Time;
+    	$time = new Participant;
     	$time->event_id = $event->id;
     	$time->name = request('name');
     	$time->times = request('data');
     	$time->save();
 
-    	return back();
+    	return back()->with('success','活动创建成功 :)');;
     }
 }

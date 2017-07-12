@@ -59,8 +59,8 @@
                 </table> --}}
     
     <div id="page1-div"></div>
-        <div class="row">
-        	<h3>选择日期：</h3>
+        <div class="page-content row">
+        	<h3 class="page-font">选择日期：</h3>
             <input id="mdp">&nbsp;&nbsp;
             <button class="send-button" id="affirmDate" type="button">下一步</button>&nbsp;&nbsp;
             <button class="reset-button" id="clear" type="button">重选</button>&nbsp;&nbsp;

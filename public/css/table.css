@@ -15,38 +15,48 @@
             height: 100vh;
             width: 100vh;
             margin: 0 auto;
-            border-top:1px solid silver;
-            border-left:1px solid silver;
-            border-right:1px solid silver;
+            
+            /*border-left:1px solid #F9C23C;
+            border-right:1px solid #F9C23C;*/
         }
 
 
         .page0 {
-            border-top:1px solid silver;
+            position: absolute;
+            /*border-top:1px solid #F9C23C;*/
             height: 100vh;
             width: 100vh;
-            
+            top:0vh;
             /*background: #FFFBE8;
             opacity:0.5;*/
-            background-color: rgba(255,251,232,0.5);
+            background-color: rgba(9,28,81,0.3);
         }
         
         .page1 {
-            border-top:1px solid silver;
+            position: absolute;
+            border-top:1px solid #F9C23C;
+            top:100vh;
             height: 100vh;
             width: 100vh;
            
-            background-color: rgba(255,251,232,0.5);
+            background-color: rgba(9,28,81,0.3);
             /*background: #FFFFFF;*/
             /*padding-bottom: 100px;*/
         }
 
+        .page-content{
+            margin-top: 10vh;
+
+        }
+
         .page2 {
-            border-top:1px solid silver;
+            position: absolute;
+            border-top:1px solid #F9C23C;
+            top:200vh;
             height: 100vh;
             width: 100vh;
 
-            background-color: rgba(255,251,232,0.5);
+            background-color: rgba(9,28,81,0.3);
             /*background: #FFFFFF;*/
             /*padding-bottom: 100px;*/
         }
@@ -87,7 +97,7 @@
         }
 
         .homeButtonCreate:hover {
-          background: #FF7B7B;
+          background: #EAA502;
         }
 
         .homeButtonJoin{
@@ -110,7 +120,7 @@
         }
 
         .homeButtonJoin:hover {
-          background: #FF7B7B;
+          background: #EAA502;
         }
 
         #myTable{
@@ -166,7 +176,7 @@
             transition: width 0.4s ease-in-out;
         }
         #event:focus {
-            width: 200%;
+            width: 60vh;
         }
 
         #name {
@@ -174,7 +184,12 @@
             transition: width 0.4s ease-in-out;
         }
         #name:focus {
-            width: 200%;
+            width: 60vh;
+        }
+
+        .custom-input{
+            width: 40vh;
+            margin-bottom: 0;
         }
 
         /* When the input field gets focus, change its width to 100% */
@@ -196,6 +211,11 @@ body{
     font-family: "Open Sans";
     /*text-transform: uppercase;*/
 }
+
+ .page-font{
+  color: #ffffff;
+    text-shadow:2px 0px 0px #000000;
+ }
 
 .button {
     font-size:16px;
@@ -237,7 +257,7 @@ body{
   font-weight: bold;
   font-family: "Open Sans";
   text-transform: uppercase;
-  color: #696666;
+  color: #ffffff;
   background: url(https://i.imgur.com/Th606mh.png) no-repeat scroll 0vh 4vh transparent;
   background-size: 2vh 4vh;
   border-radius: 2vh;
@@ -267,7 +287,7 @@ body{
   font-weight: bold;
   font-family: "Open Sans";
   text-transform: uppercase;
-  color: #696666;
+  color: #ffffff;
   background-color: transparent;
   border-radius: 2vh;
   border: 0.15vh solid #F9C23C;
