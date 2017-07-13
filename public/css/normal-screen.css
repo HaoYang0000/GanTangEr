@@ -1,0 +1,429 @@
+/*        .alt{
+            color:#000000;
+            background-color:#EAF2D3;
+        }
+        .table-hover{
+            text-align:left; 
+            background-color:#66CC66;
+            color:#000000;
+        }*/
+        
+
+        .window{
+              height: 100vh;
+              width: 100vh;
+              margin: 0 auto;
+              /*border-left:1px solid #F9C23C;
+              border-right:1px solid #F9C23C;*/
+          }
+
+
+          .page0 {
+              position: absolute;
+              /*border-top:1px solid #F9C23C;*/
+              height: 100vh;
+              width: 100vh;
+              top:0vh;
+              /*background: #FFFBE8;
+              opacity:0.5;*/
+              background-color: rgba(9,28,81,0.3);
+          }
+          
+          .page1 {
+              position: absolute;
+              border-top:1px solid #F9C23C;
+              top:100vh;
+              height: 100vh;
+              width: 100vh;
+             
+              background-color: rgba(9,28,81,0.3);
+              /*background: #FFFFFF;*/
+              /*padding-bottom: 100px;*/
+          }
+
+          .front_page_button_group{
+            width: 100vh;
+            margin: 0 auto;
+            text-align:center;
+          }
+
+          .page-content{
+              margin-top: 10vh;
+
+          }
+
+          .page2 {
+              position: absolute;
+              border-top:1px solid #F9C23C;
+              top:200vh;
+              height: 100vh;
+              width: 100vh;
+
+              background-color: rgba(9,28,81,0.3);
+              /*background: #FFFFFF;*/
+              /*padding-bottom: 100px;*/
+          }
+
+        
+
+        .check{
+            margin: 2px;
+        }
+
+
+
+        
+
+        .homeButtonCreate{
+          margin: 5vh ;
+          font-family: Arial;
+          color: #ffffff;
+          font-size: 5vh;
+          padding: 2vh;
+          text-decoration: none;
+          -webkit-border-radius: 5vh;
+          -moz-border-radius: 5vh;
+          border-radius: 5vh;
+          -webkit-box-shadow: 0px 1px 3px #666666;
+          -moz-box-shadow: 0px 1px 3px #666666;
+          box-shadow: 0px 1px 3px #666666;
+          text-shadow: 4px 2px 3px #3d263d;
+          border: solid #F9C23C 2px;
+          background: transparent;
+          transition: all 0.3s ease 0s;
+        }
+
+        .homeButtonCreate:hover {
+          background: #EAA502;
+        }
+
+        .homeButtonJoin{
+          margin: 5vh ;
+          font-family: Arial;
+          color: #ffffff;
+          font-size: 5vh;
+          padding: 2vh;
+          text-decoration: none;
+          -webkit-border-radius: 5vh;
+          -moz-border-radius: 5vh;
+          border-radius: 5vh;
+          -webkit-box-shadow: 0px 1px 3px #666666;
+          -moz-box-shadow: 0px 1px 3px #666666;
+          box-shadow: 0px 1px 3px #666666;
+          text-shadow: 4px 2px 3px #3d263d;
+          border: solid #F9C23C 0.3vh;
+           background: transparent;
+          transition: all 0.3s ease 0s;
+        }
+
+        .homeButtonJoin:hover {
+          background: #EAA502;
+        }
+
+        #myTable{
+           
+        }
+
+        .middle-content{
+            margin-left:20vh;
+        }
+        
+        
+        /*#myTable
+        {
+            width:100%;
+        }
+        #myTable td, #myTable th 
+        {
+            border:3px solid #98bf21;
+            padding:3px 7px 2px 7px;
+        }
+        #myTable th 
+        {
+            text-align:left;
+            background-color:#A7C942;
+            color:#ffffff;
+        }
+        .ui-selecting { 
+            background: #FECA40; 
+        }*/
+        /*.ui-selected{
+            color:#ff0000;
+        }*/
+
+        
+
+        /*#myTable td:hover
+        {
+            cursor:pointer;
+            background-color:yellow;
+            color:black;
+        }
+
+        #eventResult tr:hover
+        {
+            text-align:left;
+            cursor:pointer;
+            background-color:yellow;
+            color:black;
+        }*/
+
+        /*#event {
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+        #event:focus {
+            width: 60vh;
+        }
+
+        #name {
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+        #name:focus {
+            width: 60vh;
+        }*/
+
+        #mdp{
+          width: 40vh;
+        }
+
+        .custom-input{
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+            width: 40vh;
+            margin-bottom: 0;
+        }
+
+        .custom-input:focus{
+            width: 60vh;
+        }
+
+        /* When the input field gets focus, change its width to 100% */
+        /*#mdp:focus {
+            width: 60%;
+        }
+
+        #mdp {
+            width: 50%;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }*/
+
+        /* When the input field gets focus, change its width to 100% 
+        */
+body{
+    background-color: #4584b4;
+    font-weight: bold;
+    font-family: "Open Sans";
+    /*text-transform: uppercase;*/
+}
+
+ .page-font{
+    color: #ffffff;
+    text-shadow:2px 0px 0px #000000;
+    font-size: 150%;
+ }
+/*
+.button {
+    font-size:16px;
+    font-family:Arial;
+    font-weight:bold;
+    -moz-border-radius:21px;
+    -webkit-border-radius:21px;
+    border-radius:21px;
+    border:2px solid #c4c4c4;
+    padding:10px 16px;
+    text-decoration:none;
+    background:-moz-linear-gradient( center top, #fffd7f 5%, #bd9f46 100% );
+    background:-ms-linear-gradient( top, #fffd7f 5%, #bd9f46 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffd7f', endColorstr='#bd9f46');
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(5%, #fffd7f), color-stop(100%, #bd9f46) );
+    background-color:#fffd7f;
+    color:#ffffff;
+    display:inline-block;
+    text-shadow:2px 0px 0px #a3a3a3;
+    -webkit-box-shadow: 2px 1px 0px 0px #c2c2c2;
+    -moz-box-shadow: 2px 1px 0px 0px #c2c2c2;
+    box-shadow: 2px 1px 0px 0px #c2c2c2;
+}.button:hover {
+    background:-moz-linear-gradient( center top, #bd9f46 5%, #fffd7f 100% );
+    background:-ms-linear-gradient( top, #bd9f46 5%, #fffd7f 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bd9f46', endColorstr='#fffd7f');
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(5%, #bd9f46), color-stop(100%, #fffd7f) );
+    background-color:#bd9f46;
+}.button:active {
+    position:relative;
+    top:1px;
+}*/
+.normal-button{
+  font-size: 1vh;
+  padding: 1vh;
+  margin: 2px;
+  font-weight: bold;
+  font-family: "Open Sans";
+  text-transform: uppercase;
+  color: #ffffff;
+  background: transparent;
+  background-size: 2vh 4vh;
+  border-radius: 5vh;
+  border: 0.15vh solid #F9C23C;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.normal-button:hover{
+      color: #fff;
+    background-color: #EAA502;
+    border-color: #EAA502;
+    background-position: 0.75vh bottom;
+    -webkit-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+
+.send-button{
+         
+  font-size: 1.5vh;
+  padding: 1vh;
+  font-weight: bold;
+  font-family: "Open Sans";
+  text-transform: uppercase;
+  color: #ffffff;
+  background: url(https://i.imgur.com/Th606mh.png) no-repeat scroll 0vh 4vh transparent;
+  background-size: 2vh 4vh;
+  border-radius: 5vh;
+  border: 0.2vh solid #F9C23C;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+.send-button:hover {
+    color: #fff;
+    background-color: #EAA502;
+    border-color: #EAA502;
+    background-position: 0.75vh bottom;
+    -webkit-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.send-button:focus {
+    background-position: 2vh -4vh;
+    -webkit-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.reset-button{
+  font-size: 1.5vh;
+  padding: 1vh;
+  font-weight: bold;
+  font-family: "Open Sans";
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: transparent;
+  border-radius: 5vh;
+  border: 0.2vh solid #F9C23C;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+.reset-button:hover {
+    color: #fff;
+    background-color: #FF7B7B;
+    border-color: #EAA502;
+    background-position: 0.75vh bottom;
+    -webkit-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.reset-button:focus {
+    background-position: 2vh -4vh;
+    -webkit-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#cloud{
+  z-index: -2; 
+  position: fixed; 
+  height: 0; 
+  width:100%;
+
+}
+
+#canvas{
+  z-index: -1;
+  position: fixed; 
+  height: 0; 
+  width:100%;
+}
+/* This css button was generated by css-button-generator.com */
+
+@media screen and (max-width: 400px) {
+          .window{
+              width: auto;
+              /*border-left:1px solid #F9C23C;
+              border-right:1px solid #F9C23C;*/
+          }
+
+
+          .page0 {
+              width: auto;
+          }
+          
+          .page1 {
+              width: auto;
+              /*background: #FFFFFF;*/
+              /*padding-bottom: 100px;*/
+          }
+
+          .page2 {
+             width: auto;
+          }
+
+          .front_page_button_group{
+            width: auto;
+          }
+
+          .page-content{
+              margin-top: 10vh;
+          }
+
+          .page-font{
+              font-size: 100%;
+           }
+
+           .middle-content{
+              margin-left:10vh;
+          }
+
+          #cloud{
+            width: auto;
+          }
+
+          #canvas{
+            width: auto;
+          }
+
+          .custom-input{
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+            width: 40vh;
+            margin-bottom: 0;
+          }
+
+          .custom-input:focus{
+              width: 50vh;
+          }
+
+          #mdp{
+            width: 40vh;
+          }
+          .send-button{
+            background: url(https://i.imgur.com/Th606mh.png) no-repeat scroll 0vh 6vh transparent;
+            background-size: 5vh 8vh;
+          }
+
+
+          
+}

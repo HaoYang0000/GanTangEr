@@ -60,7 +60,8 @@
     
     <div id="page1-div"></div>
         <div class="page-content row">
-        	<h3 class="page-font">选择日期：</h3>
+        	<label class="page-font">选择日期：</label>
+            <br>
             <input id="mdp">&nbsp;&nbsp;
             <button class="send-button" id="affirmDate" type="button">下一步</button>&nbsp;&nbsp;
             <button class="reset-button" id="clear" type="button">重选</button>&nbsp;&nbsp;
@@ -70,6 +71,37 @@
 
 
 <script>
+    $('#affirmDate').click(function(){
+                if($("#mdp").val() == ""){
+                    alert("请选择至少一个日期");
+                }else{
+
+
+                    $("#exactTime").empty();
+                    var temp = document.getElementById("mdp").value.split(",");
+                    var dates = $('#mdp').multiDatesPicker('getDates');
+                    for (var i = 0; i < temp.length; i++) {
+
+                        $( "#exactTime" ).append( 
+                            "<h4 class=\"page-font\">日期: "+convertDate(dates[i])+"</h4>"+
+                            "<button class=\"normal-button\" type=\"button\" onclick=\"checkIt(this);\">早上：8：00-10：00&nbsp;&nbsp;"
+                            +"<input type=\"checkbox\" name=\"morning\"></button>&nbsp;&nbsp;"+
+                            "<button class=\"normal-button\" type=\"button\" onclick=\"checkIt(this);\">中午：11：00-13：00&nbsp;&nbsp;"
+                            +"<input type=\"checkbox\" name=\"morning\"></button>&nbsp;&nbsp;"+
+                            "<button class=\"normal-button\" type=\"button\" onclick=\"checkIt(this);\">下午：14：00-17：00&nbsp;&nbsp;"
+                            +"<input type=\"checkbox\" name=\"morning\"></button>&nbsp;&nbsp;"+
+                            "<button class=\"normal-button\" type=\"button\" onclick=\"checkIt(this);\">晚上：18：00-22：00&nbsp;&nbsp;"
+                            +"<input type=\"checkbox\" name=\"morning\"></button>&nbsp;&nbsp;"+
+                            "<button class=\"normal-button\" type=\"button\" onclick=\"checkIt(this);\">通宵：23：00-7：00&nbsp;&nbsp;"
+                            +"<input type=\"checkbox\" name=\"morning\"></button>&nbsp;&nbsp;");
+                    }
+                    
+                    var start = document.getElementById("page1").offsetTop;
+                    var moveDownTarget = document.getElementById("page2");
+                    var moveDownEnd = moveDownTarget.offsetTop-1;
+                    moveDown(start,moveDownEnd);
+                }
+            });
 	$('#mdp').multiDatesPicker({
 		dateFormat: "y-m-d",
 		minDate: 0,

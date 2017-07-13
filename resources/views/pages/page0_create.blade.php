@@ -1,6 +1,6 @@
 <div class="middle-content">
 <div id="tableHint">
-    <h3 class="page-font">请先填写活动名称:</h3>
+    <label class="page-font">请先填写活动名称:</label>
 </div>
 <br>
 

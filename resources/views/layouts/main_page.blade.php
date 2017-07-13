@@ -241,37 +241,7 @@
                 return result[1]+"月"+result[2]+"日";
             }
 
-            $('#affirmDate').click(function(){
-                if($("#mdp").val() == ""){
-                    alert("请选择至少一个日期");
-                }else{
-
-
-                    $("#exactTime").empty();
-                    var temp = document.getElementById("mdp").value.split(",");
-                    var dates = $('#mdp').multiDatesPicker('getDates');
-                    for (var i = 0; i < temp.length; i++) {
-
-                        $( "#exactTime" ).append( 
-                            "<h4 class=\"page-font\">日期: "+convertDate(dates[i])+"</h4>"+
-                            "<button class=\"btn btn-success check\" type=\"button\" onclick=\"checkIt(this);\">早上：8：00-10：00&nbsp;&nbsp;"
-                            +"<input type=\"checkbox\" name=\"morning\"></button>&nbsp;&nbsp;"+
-                            "<button class=\"btn btn-warning check\" type=\"button\" onclick=\"checkIt(this);\">中午：11：00-13：00&nbsp;&nbsp;"
-                            +"<input type=\"checkbox\" name=\"morning\"></button>&nbsp;&nbsp;"+
-                            "<button class=\"btn btn-info check\" type=\"button\" onclick=\"checkIt(this);\">下午：14：00-17：00&nbsp;&nbsp;"
-                            +"<input type=\"checkbox\" name=\"morning\"></button>&nbsp;&nbsp;"+
-                            "<button class=\"btn btn-primary check\" type=\"button\" onclick=\"checkIt(this);\">晚上：18：00-22：00&nbsp;&nbsp;"
-                            +"<input type=\"checkbox\" name=\"morning\"></button>&nbsp;&nbsp;"+
-                            "<button class=\"btn btn-danger check\" type=\"button\" onclick=\"checkIt(this);\">通宵：23：00-7：00&nbsp;&nbsp;"
-                            +"<input type=\"checkbox\" name=\"morning\"></button>&nbsp;&nbsp;");
-                    }
-                    
-                    var start = document.getElementById("page1").offsetTop;
-                    var moveDownTarget = document.getElementById("page2");
-                    var moveDownEnd = moveDownTarget.offsetTop-1;
-                    moveDown(start,moveDownEnd);
-                }
-            });
+            
 
             function getUser(data) {
                 currentUser = data.innerHTML;

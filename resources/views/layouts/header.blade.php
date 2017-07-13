@@ -39,7 +39,15 @@
 <meta charset="utf-8"> 
 
 <link rel="stylesheet" href="{{ asset('/css/jquery-ui.multidatespicker.css') }}">
-<link rel="stylesheet" href="{{ asset('/css/table.css') }}">
+
+
+<!-- <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 400px)" href="{{ asset('/css/normal-screen.css') }}"/>
+<link rel="stylesheet" type="text/css" media="screen and (min-width: 400px)" href="{{ asset('/css/small-screen.css') }}"/> -->
+
+<link rel="stylesheet" type="text/css" href="{{ asset('/css/normal-screen.css') }}"/>
+
+
+<!-- <link rel="stylesheet" href="{{ asset('/css/table.css') }}"> -->
 <script src="{{ asset('/js/table.js') }}"></script>
 <script src="{{ asset('/js/jquery-ui.multidatespicker.js') }}"></script>
 
